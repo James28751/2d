@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class playermove : MonoBehaviour
 {
+    public GameObject gameManager;
+    public AudioClip walk;
+    public AudioClip hit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +19,30 @@ public class playermove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+         
+            this.GetComponent<AudioSource>().clip = walk;
             transform.Translate(-3, 0, 0);
             GetComponent<AudioSource>().Play();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            this.GetComponent<AudioSource>().clip = walk;
             transform.Translate(3, 0, 0);
             GetComponent<AudioSource>().Play();
         }
+        
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        this.GetComponent<AudioSource>().clip = hit;
+        GetComponent<AudioSource>().Play();
+    }
+    public void LButton()
+    {
+        transform.Translate(-3, 0, 0);
+    }
+    public void RButton()
+    {
+        transform.Translate(3, 0, 0);
     }
 }
