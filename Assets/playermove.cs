@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playermove : MonoBehaviour
 {
-    public GameObject gameManager;
+    public GameObject gamemaster;
     public AudioClip walk;
     public AudioClip hit;
 
@@ -36,6 +36,7 @@ public class playermove : MonoBehaviour
     {
         this.GetComponent<AudioSource>().clip = hit;
         GetComponent<AudioSource>().Play();
+        gamemaster.GetComponent<gamemaster>().HPhit();
     }
     public void LButton()
     {
