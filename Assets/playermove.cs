@@ -11,7 +11,7 @@ public class playermove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class playermove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-         
+
             this.GetComponent<AudioSource>().clip = walk;
             transform.Translate(-3, 0, 0);
             GetComponent<AudioSource>().Play();
@@ -30,20 +30,34 @@ public class playermove : MonoBehaviour
             transform.Translate(3, 0, 0);
             GetComponent<AudioSource>().Play();
         }
-        
+
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         this.GetComponent<AudioSource>().clip = hit;
         GetComponent<AudioSource>().Play();
-        gamemaster.GetComponent<gamemaster>().HPhit();
+
+        if (collision.tag=="arr")
+        {
+            this.GetComponent<AudioSource>().clip = hit;
+            GetComponent<AudioSource>().Play();
+            gamemaster.GetComponent<gamemaster>().HPhit();
+        }
+        else if (collision.tag=="carfood")
+        {
+            gamemaster.GetComponent<gamemaster>().hphp();
+        }
     }
     public void LButton()
     {
-        transform.Translate(-3, 0, 0);
+        this.GetComponent<AudioSource>().clip = walk;
+        transform.Translate(-3, 0, 0); 
+        GetComponent<AudioSource>().Play();
     }
     public void RButton()
     {
+        this.GetComponent<AudioSource>().clip = walk;
         transform.Translate(3, 0, 0);
+        GetComponent<AudioSource>().Play();
     }
 }
